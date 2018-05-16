@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Bienvenidos!, Hola Mundo!!
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!--<button ion-button block color="primary">Primario</button>
+
+  <button ion-button color="secondary">Secondary</button>
+
+  <button ion-button block outline color="primary">Primario</button>
+
+  <button ion-button outline color="secondary">Secondary</button>
+
+  <button ion-button block clear color="primary">Primario</button>
+
+  <button ion-button clear color="secondary">Secondary</button>
+
+  <button ion-button block round color="primary">Primario</button>
+
+  <button ion-button round color="secondary">Secondary</button>
+
+  <button ion-button block round outline color="primary">Primario</button>
+
+  <ion-item>
+    <ion-label>Opc1</ion-label>
+    <ion-checkbox checked="true"></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Opc2</ion-label>
+    <ion-checkbox checked="false"></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Opc2</ion-label>
+    <ion-checkbox disabled checked="true"></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label fixed>Fixed</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Floating</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" placeholder="Placeholder"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label stacked>Stacked</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>On</ion-label>
+    <ion-toggle checked="true"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Off</ion-label>
+    <ion-toggle disabled checked="false"></ion-toggle>
+  </ion-item>-->
+
+  <ion-item>
+    <ion-label floating>Floating</ion-label>
+    <ion-input type="text" [(ngModel)]="myString"></ion-input>
+  </ion-item>
+
+  <p>{{this.myString}}</p>
+
+  <button ion-button block round outline color="primary" (click)="performClick()">Primario</button>
+
+  <button ion-button block round color="primary" (click)="navegar()">Navegar</button>
+
+
+</ion-content>
