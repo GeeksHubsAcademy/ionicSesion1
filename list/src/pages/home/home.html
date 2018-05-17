@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  Listas
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items">
+
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="http://placeimg.com/40/40">
+        </ion-avatar>
+
+        <button>
+          {{ item }}
+        </button>
+      </ion-item>
+
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="textTapped(item)">
+          <ion-icon name="text"></ion-icon>
+          Text
+        </button>
+        <button ion-button color="secondary" (click)="callTapped(item)">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+      </ion-item-options>
+
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="emailTapped(item)">
+          <ion-icon name="mail"></ion-icon>
+          Email
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>
