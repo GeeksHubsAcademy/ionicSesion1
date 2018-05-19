@@ -21,12 +21,23 @@ export class BookFormPage {
   title: string = "";
   author: string = "";
 
+  bookModel: BookModel;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public http: Http
   ) {
+
+    let book = navParams.get("bookModel");
+    if (book != null) {
+      this.bookModel = book;
+
+      this.title = this.bookModel.bookTitle;
+      this.author = this.bookModel.bookAuthor;
+    }
+
   }
 
   ionViewDidAppear() {
@@ -37,15 +48,26 @@ export class BookFormPage {
 
     if (this.title.length > 0 && this.author.length > 0) {
 
-      //Guardar Libro
-      let book: BookModel = {
-        _id: null,
-        bookTitle: this.title,
-        bookAuthor: this.author,
-        bookImage: "https://placeimg.com/100/100"
-      }
+      if (this.bookModel != null) {
+        //Actualizando
+        this.bookModel.bookTitle = this.title;
+        this.bookModel.bookAuthor = this.author;
 
-      this.saveBook(book);
+        this.updateBook(this.bookModel);
+
+      } else {
+        //Nuevo
+
+        //Guardar Libro
+        let book: BookModel = {
+          _id: null,
+          bookTitle: this.title,
+          bookAuthor: this.author,
+          bookImage: "https://placeimg.com/100/100"
+        }
+
+        this.saveBook(book);
+      }
 
     } else {
       //Mostrar mensaje
@@ -88,6 +110,39 @@ export class BookFormPage {
           let newBook: BookModel = res;
 
           this.showMessage(`Se ha creado el ID: ${newBook._id}`);
+
+          //console.log(res);
+        },
+        error => {
+          console.log(error);
+
+          this.showMessage("Ocurrió un error al guardar el libro");
+        });
+
+  }
+
+  updateBook(book: BookModel) {
+
+    var url = "https://baas.kinvey.com/appdata/kid_BJdgb3Scf/books/" + book._id;
+
+    var headers: Headers = new Headers();
+    headers.append("Authorization", "Basic a2lkX0JKZGdiM1NjZjpmNTdlZmE5NmUwODY0NzljYTE3MTI0MmY0YWJjODU2OA==");
+    headers.append("X-Kinvey-API-Version", "3");
+    headers.append("Content-Type", "application/json");
+
+    this.http.put(
+      url, //Url de la colección (ENDPOINT)
+      book, //La información a enviar (Request Body)
+      {
+        headers: headers
+      })
+      .map(res => res.json())
+      .subscribe(
+        res => {
+
+          let newBook: BookModel = res;
+
+          this.showMessage(`Se ha Modificado el ID: ${newBook._id}`);
 
           //console.log(res);
         },

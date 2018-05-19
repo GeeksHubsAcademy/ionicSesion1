@@ -8,16 +8,32 @@
 
 <ion-content padding>
 
-  <button ion-button (click)="addNewBook()" block>Guardar!</button>
-    
-      <ion-list>
+  <button ion-button (click)="addNewBook()" block>Nuevo!</button>
 
-        <ion-item *ngFor="let item of books">
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of books">
 
-          <ion-label>{{ item.bookTitle }}</ion-label>
+      <ion-item>
 
-        </ion-item>
+        <ion-label>{{ item.bookTitle }}</ion-label>
 
-      </ion-list>
+      </ion-item>
+
+      <ion-item-options side="left">
+
+        <button ion-button color="danger" (click)="delete(item)">
+          Borrar
+        </button>
+
+      </ion-item-options>
+
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="edit(item)">
+          Editar
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>
