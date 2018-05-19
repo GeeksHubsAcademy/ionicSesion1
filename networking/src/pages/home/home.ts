@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { BookFormPage } from '../book-form/book-form';
+import { BookModel } from '../../model/BookModel';
 
 @Component({
   selector: 'page-home',
@@ -10,8 +11,7 @@ import { BookFormPage } from '../book-form/book-form';
 })
 export class HomePage {
 
-
-  books: any[] = [];
+  books: BookModel[] = [];
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +26,11 @@ export class HomePage {
     this.navCtrl.push(BookFormPage);
   }
 
+  doRefresh(refresher) {
+    this.consumeWebService();
+    refresher.complete();
+  }
+
   consumeWebService() {
 
     var url = "https://baas.kinvey.com/appdata/kid_BJdgb3Scf/books";
@@ -33,7 +38,7 @@ export class HomePage {
     var headers: Headers = new Headers();
     headers.append("Authorization", "Basic a2lkX0JKZGdiM1NjZjpmNTdlZmE5NmUwODY0NzljYTE3MTI0MmY0YWJjODU2OA==");
     headers.append("X-Kinvey-API-Version", "3");
-    headers.append("Content-Type", "application/json")
+    headers.append("Content-Type", "application/json");
 
     this.http.get(url, {
       headers: headers
