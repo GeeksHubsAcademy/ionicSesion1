@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { BookFormPage } from '../book-form/book-form';
 
 @Component({
   selector: 'page-home',
@@ -21,6 +22,9 @@ export class HomePage {
 
   }
 
+  addNewBook() {
+    this.navCtrl.push(BookFormPage);
+  }
 
   consumeWebService() {
 
