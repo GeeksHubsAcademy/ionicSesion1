@@ -20,6 +20,7 @@ export class BookFormPage {
 
   title: string = "";
   author: string = "";
+  pageTitle: string;
 
   bookModel: BookModel;
 
@@ -36,6 +37,13 @@ export class BookFormPage {
 
       this.title = this.bookModel.bookTitle;
       this.author = this.bookModel.bookAuthor;
+
+      this.pageTitle = "Modificando Libro";
+
+    } else {
+
+      this.pageTitle = "Creando Libro";
+
     }
 
   }
